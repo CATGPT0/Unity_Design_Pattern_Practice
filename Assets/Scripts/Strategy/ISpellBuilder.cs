@@ -7,5 +7,6 @@ public interface ISpellBuilder
     ISpellBuilder SetPrefab(GameObject prefab);
     ISpellBuilder SetSpeed(float speed);
     ISpellBuilder SetDamage(float damage);
+    ISpellBuilder SetDestroyTime(float destroyTime);
     GameObject Build(Transform transform);
 }

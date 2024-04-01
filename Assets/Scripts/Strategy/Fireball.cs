@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [CreateAssetMenu(fileName = "New Fireball", menuName = "Spells/Fireball")]
 public class Fireball : Spell
 {
@@ -15,8 +16,11 @@ public class Fireball : Spell
             .SetPrefab(Prefab)
             .SetSpeed(10)
             .SetDamage(10)
-            
             .Build(transform);
+
+        #if DEBUG
+        Debug.Log($"Fireball casted with speed: {10} and damage: {10}");
+        #endif
     }
 
     class FireballBuilder : ISpellBuilder
@@ -24,6 +28,7 @@ public class Fireball : Spell
         private GameObject _spellPrefab;
         private float _speed;
         private float _damage;
+        private float _destroyTime;
 
         public ISpellBuilder SetPrefab(GameObject prefab)
         {
@@ -40,6 +45,12 @@ public class Fireball : Spell
         public ISpellBuilder SetDamage(float damage)
         {
             _damage = damage;
+            return this;
+        }
+
+        public ISpellBuilder SetDestroyTime(float destroyTime)
+        {
+            _destroyTime = destroyTime;
             return this;
         }
 
